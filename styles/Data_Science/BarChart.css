@@ -1,0 +1,59 @@
+svg.barchart rect.bar{
+    fill: #6D9EDD;
+}
+
+svg.barchart rect.bar.highlighted{
+    fill: #9CFC97;
+}
+
+#BarChart {
+    width: 1000px;
+    height: 800px;
+    box-sizing: border-box;
+    margin: auto;
+    background: #FFFFFF;
+    border: 1px solid #F8F9FA;
+    box-shadow: 0px 4px 20px rgba(238, 238, 238, 0.501967);
+    border-radius: 20px;
+    display: flex; /* Add Flexbox display */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center;
+    font-family: 'Poppins';
+    font-weight: 600;
+}
+
+#BarChart h2 {
+    margin: 0; /* Remove default margin */
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: #3E5D81;
+}
+
+#BarChart svg * {
+    filter: none; /* Reset filter for children */
+    color: #3E5D81;
+}
+
+/* Filter function */
+#BarChartFilter {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+#BarChartFilter span {
+    padding-top: 8px;
+    margin: 0px;
+    margin-right: 20px; /* Add margin between the span and the dropdown button */
+    color: #3E5D81;
+}
+  
+.BarChartDropdown select{
+    padding: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    color: #3E5D81;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid #3E5D81;
+}

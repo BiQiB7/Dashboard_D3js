@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F20DV MY-G2 Dashboard</title>
+
+    <script src="lib/d3/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="navbar">
+        <div id="navbarContent">
+            <button class="pushable" id="dataScienceButton">
+                <img src="DataScienceIcon.png" width="50" height="50"></img>
+                <span class="front">Jobs and Salaries <br> In Data Science</span>
+            </button>
+
+            <button class="pushable" id="indiaButton">
+                <img src="IndiaIcon.png" width="50" height="50"></img>
+                <span class="front">Guide to India's <br> Must See Places</span>
+            </button>
+
+            <script>
+                document.getElementById("dataScienceButton").addEventListener("click", function () {
+                    window.location.href = "./index.html"; // Navigate to Jobs and Salaries in Data Science page
+                });
+
+                document.getElementById("indiaButton").addEventListener("click", function () {
+                    window.location.href = "./india.html"; // Navigate to Guide to India Must See Places page
+                });
+            </script>
+        </div>
+    </div>
+
+    <div class="grid">    
+        <div id="donutCard" class="card">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <h2>Distribution of Attractions by Zones</h2>
+            </div>
+    
+            <div id="my_dataviz"></div>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="range1">
+                        -300
+                    </span>
+                    <span> &dash; </span>
+                    <span id="range2">
+                        2024
+                    </span>
+                </div>
+                <div class="double-thumb-slider-container">
+                    <div class="slider-track"
+                        style="width: 40%; display: flex; flex-direction: column; align-items: center;">
+                        <input type="range" min="-300" max="2024" value="-300" id="slider-1" class="slider-1"
+                            oninput="slideOne()" style="width: 100%; margin-top: -10px;">
+                        <input type="range" min="-300" max="2024" value="2024" id="slider-2" class="slider-2"
+                            oninput="slideTwo()" style="width: 100%; margin-top: -10px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="margin-top: 10px;">Establishment Year</span>
+                    </div>
+    
+                    <div class="sliders-container" style="width: 40%;">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/main.js"></script>
+    <script>
+        let sliderOne = document.getElementById("slider-1");
+        let sliderTwo = document.getElementById("slider-2");
+        let displayValOne = document.getElementById("range1");
+        let displayValTwo = document.getElementById("range2");
+        let minGap = 0;
+        let sliderTrack = document.querySelector(".slider-track");
+
+        let sliderMaxValue = document.getElementById("slider-1").max;
+        fillColor();
+        function slideOne() {
+            if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+                sliderOne.value = parseInt(sliderTwo.value) - minGap;
+            }
+            displayValOne.textContent = sliderOne.value;
+            fillColor();
+        }
+        function slideTwo() {
+            if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+                sliderTwo.value = parseInt(sliderOne.value) + minGap;
+            }
+            displayValTwo.textContent = sliderTwo.value;
+            fillColor();
+        }
+        function fillColor() {
+            percent1 = (sliderOne.value) / (sliderMaxValue) * 100;
+            percent2 = (sliderTwo.value) / (sliderMaxValue) * 100;
+            sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
+        }
+    </script>
+
+
+</body>
+
+</html>

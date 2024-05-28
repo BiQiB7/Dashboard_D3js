@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F20DV MY-G2 Dashboard</title>
+
+    <script src="lib/d3/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <div id="navbarContent">
+            <button class="pushable" id="dataScienceButton">
+                <img src="DataScienceIcon.png" width="50" height="50"></img>
+                <span class="front">Jobs and Salaries <br> In Data Science</span>
+            </button>
+        
+            <button class="pushable" id="indiaButton">
+                <img src="IndiaIcon.png" width="50" height="50"></img>
+                <span class="front">Guide to India's <br> Must See Places</span>
+            </button>
+
+            <script>
+                document.getElementById("dataScienceButton").addEventListener("click", function() {
+                    window.location.href = "./index.html"; // Navigate to Jobs and Salaries in Data Science page
+                });
+                
+                document.getElementById("indiaButton").addEventListener("click", function() {
+                    window.location.href = "./india.html"; // Navigate to Guide to India Must See Places page
+                });
+            </script>
+        
+            <div class="dropdown" class="search">
+                <button onclick="toggleDropdown()" class="dropbtn">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z" fill="#3E5D81"/>
+                    </svg>      
+                    <span>Search</span>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="./html/barChart.html">Salary Disparities Across Job Categories</a> 
+                    <a href="./html/lineChart.html">Salary Trends Over Time</a>
+                    <a href="./html/scatterPlot.html">Salary Levels Benchmarks for 2023</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id = "DataScience">
+        <div class="DataScienceSummary">
+            <div id = "SummaryHeader">
+                <h2 id = "SummaryTitle" style="color: #3E5D81;">2023 Jobs and Salaries in Data Science</h2>
+                <span style="color: #3E5D81;">Jobs and Salaries Summary</span>
+            </div>
+            <div id="SummaryContent">
+                <div class="summary-box" id="totalSalariesBox" style="background-color: #FFE2E5;">
+                    <div class="summary-title">Total Salaries</div>
+                    <div class="big-number" id="totalSalaries">Loading...</div>
+                    <div class="small-text" id="salariesPercentage">Loading...</div>
+                </div>
+                <div class="summary-box" id="totalJobTitlesBox" style="background-color: #FFF4DE;">
+                    <div class="summary-title">Total Job Titles</div>
+                    <div class="big-number" id="totalJobTitles">Loading...</div>
+                    <div class="small-text" id="jobTitlesPercentage">Loading...</div>
+                </div>
+                <div class="summary-box" id="totalJobCategoriesBox" style="background-color: #F3E8FF;">
+                    <div class="summary-title">Total Job Categories</div>
+                    <div class="big-number" id="totalJobCategories">Loading...</div>
+                    <div class="small-text" id="jobCategoriesPercentage">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "BarChart">
+            <div id = "BarChartHeader">
+                <h2>Salary Disparities Across Job Categories</h2>
+                <div id = "BarChartFilter">
+                    <span>By Year</span>
+                    <div class="BarChartDropdown"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "LineChart">
+            <div id = "LineChartHeader">
+                <h2>Salary Trends Over Time</h2>
+                <div id = "LineChartFilter">
+                    <span>By Job Category</span>
+                    <div id="LineChartDropdown"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "ScatterPlot">
+            <div id = "ScatterPlotHeader">
+                <h2 id = "ScatterPlotTitle">Salary Levels Benchmarks for 2023</h2>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/main.js"></script>
+</body>
+
+</html>

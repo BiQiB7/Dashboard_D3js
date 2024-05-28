@@ -1,0 +1,38 @@
+@import './map.css';
+@import './slider.css';
+@import './dropdown.css';
+@import './doubleThumbSlider.css';
+
+.card {
+    background: #FFFFFF;
+    border: 1px solid #F8F9FA;
+    box-shadow: 0px 4px 20px rgba(238, 238, 238, 0.501967);
+    border-radius: 20px;
+
+}
+
+.inner-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+}
+
+.alert-box {
+    position: fixed;
+    /* top: 20%;
+    left: 20%; */
+    /* transform: translate(-50%, -50%); */
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    z-index: 1000;
+    display: none;
+}

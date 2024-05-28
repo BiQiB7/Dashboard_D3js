@@ -1,0 +1,64 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.selected {
+    background-color: lightblue;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+}
+
+.selected-option {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 4px 8px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+}
+
+.close-button {
+    cursor: pointer;
+    margin-left: 6px;
+}
+/* Style for the arrow icon */
+.selected-options-list-container {
+    width: 200px; /* Adjust the width as needed */
+    overflow-x: auto; /* Enable horizontal scrolling if the content exceeds the container width */
+    
+
+}
+.selected-options-container {
+    margin-top: 5px;
+}
+.dropdown {
+    margin-top: 10px;
+}
+

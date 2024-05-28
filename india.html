@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F20DV MY-G2 Dashboard</title>
+
+    <script src="lib/d3/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="navbar">
+        <div id="navbarContent">
+            <button class="pushable" id="dataScienceButton">
+                <img src="DataScienceIcon.png" width="50" height="50"></img>
+                <span class="front">Jobs and Salaries <br> In Data Science</span>
+            </button>
+
+            <button class="pushable" id="indiaButton">
+                <img src="IndiaIcon.png" width="50" height="50"></img>
+                <span class="front">Guide to India's <br> Must See Places</span>
+            </button>
+
+            <script>
+                document.getElementById("dataScienceButton").addEventListener("click", function () {
+                    window.location.href = "./index.html"; // Navigate to Jobs and Salaries in Data Science page
+                });
+
+                document.getElementById("indiaButton").addEventListener("click", function () {
+                    window.location.href = "./india.html"; // Navigate to Guide to India Must See Places page
+                });
+            </script>
+
+            <div class="dropdown" class="search">
+                <button onclick="toggleDropdown()" class="dropbtn">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z"
+                            fill="#3E5D81" />
+                    </svg>
+                    <span>Search</span>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="./indiaMap.html">Distribution of Top Attractions by User Preference</a>
+                    <a href="./bubbleChart.html">Popularity of Types Of Significance</a>
+                    <a href="./donutChart.html">Distribution of Attractions by Zones</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alertBox" class="alert-box"></div>
+    <div class="grid">
+        <div id="mapCard" class="card">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <h2>Distribution of Top Attractions by User Preference</h2>
+    
+            </div>
+            <div id="map"></div>
+            <button id="btn" class="btn" style="position: absolute; top: 0; right: 0;"><i class="fa fa-filter"
+                    style="color: aliceblue;"></i></button>
+    
+            <div id="inner-card" class="inner-card">
+                Entrance Fee <i class="fa fa-question-circle" id="entrance-fee-info"></i>
+                <div id="slider-entrance-fee-container"></div>
+    
+                Rating <i class="fa fa-question-circle" id="rating-info"></i>
+                <div id="slider-rating-container"></div>
+                <div id="checkbox-airport-container"></div> <i class="fa fa-question-circle" id="airport-info"></i>
+                <div id="checkbox-camera-container"></div> <i class="fa fa-question-circle" id="camera-info"></i>
+                Type <i class="fa fa-question-circle" id="type-info"></i>
+                <div id="dropdown-type-container"></div>
+            </div>
+    
+        </div>
+        <div id="bubbleCard" class="card">
+    
+        </div>
+        <div id="donutCard" class="card">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <h2>Distribution of Attractions by Zones</h2>
+    
+            </div>
+    
+            <div id="my_dataviz"></div>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="range1">
+                        -300
+                    </span>
+                    <span> &dash; </span>
+                    <span id="range2">
+                        2024
+                    </span>
+                </div>
+                <div class="double-thumb-slider-container">
+                    <div class="slider-track"
+                        style="width: 40%; display: flex; flex-direction: column; align-items: center;">
+                        <input type="range" min="-300" max="2024" value="-300" id="slider-1" class="slider-1"
+                            oninput="slideOne()" style="width: 100%; margin-top: -10px;">
+                        <input type="range" min="-300" max="2024" value="2024" id="slider-2" class="slider-2"
+                            oninput="slideTwo()" style="width: 100%; margin-top: -10px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="margin-top: 10px;">Establishment Year</span>
+                    </div>
+    
+                    <div class="sliders-container" style="width: 40%;">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/main.js"></script>
+    <script>
+        /* India Map */
+        document.addEventListener('DOMContentLoaded', () => {
+            let innerCard = document.querySelector('#inner-card');
+            let btn = document.querySelector('#btn');
+
+            // Hide inner card when mouse leaves
+            innerCard.addEventListener('mouseleave', () => {
+                innerCard.style.display = 'none';
+            });
+
+            // Show inner card when button is clicked
+            btn.addEventListener('click', () => {
+                innerCard.style.display = 'block';
+            });
+            let infoIcons = document.querySelectorAll('.fa-question-circle');
+            // Add click event listener to each info icon
+            infoIcons.forEach(icon => {
+                icon.style.color = "#b4cdd6";
+                // icon.style.backgroundColor="black";
+
+                icon.addEventListener('click', () => {
+                    // Get the ID of the clicked icon
+                    let id = icon.getAttribute('id');
+
+                    // Show the purpose based on the ID
+                    let purposeText;
+                    switch (id) {
+                        case 'entrance-fee-info':
+                            purposeText = 'Slide to alter the maximum value of entrance fee acceptable.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'rating-info':
+                            purposeText = 'Slide to alter the minimum Google average rating acceptable.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'airport-info':
+                            purposeText = 'Tick if you want the destination to have an airport within 50km.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'camera-info':
+                            purposeText = 'Tick if you want to take photography in the attraction.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'type-info':
+                            purposeText = 'Select type(s) of destination in the dropdown.';
+                            showAlert(purposeText, id);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            });
+
+
+        });
+        // Function to display alert box
+        function showAlert(message, id) {
+            let alertBox = document.getElementById('alertBox');
+            alertBox.textContent = message;
+            alertBox.style.display = 'block';
+
+            let iconRect = document.getElementById(id).getBoundingClientRect();
+            console.log(iconRect);
+            alertBox.style.top = iconRect.top + 'px';
+            alertBox.style.left = (iconRect.right + 50) + 'px'; // Adjust as needed
+
+            // Add click event listener to document to hide the alert box when clicked outside
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 8000);
+        }
+
+        /* Donut Chart */
+        let sliderOne = document.getElementById("slider-1");
+        let sliderTwo = document.getElementById("slider-2");
+        let displayValOne = document.getElementById("range1");
+        let displayValTwo = document.getElementById("range2");
+        let minGap = 0;
+        let sliderTrack = document.querySelector(".slider-track");
+
+        let sliderMaxValue = document.getElementById("slider-1").max;
+        fillColor();
+        function slideOne() {
+            if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+                sliderOne.value = parseInt(sliderTwo.value) - minGap;
+            }
+            displayValOne.textContent = sliderOne.value;
+            fillColor();
+        }
+        function slideTwo() {
+            if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+                sliderTwo.value = parseInt(sliderOne.value) + minGap;
+            }
+            displayValTwo.textContent = sliderTwo.value;
+            fillColor();
+        }
+        function fillColor() {
+            percent1 = (sliderOne.value) / (sliderMaxValue) * 100;
+            percent2 = (sliderTwo.value) / (sliderMaxValue) * 100;
+            sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
+        }
+    </script>
+</body>
+</html>

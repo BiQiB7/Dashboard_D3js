@@ -1,0 +1,52 @@
+#ScatterPlot {
+    width: 1000px;
+    height: 800px;
+    box-sizing: border-box;
+    margin: auto;
+    background: #FFFFFF;
+    border: 1px solid #F8F9FA;
+    box-shadow: 0px 4px 20px rgba(238, 238, 238, 0.501967);
+    border-radius: 20px;
+    display: flex; /* Add Flexbox display */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center;
+    font-weight: 600;
+    fill: #3E5D81;
+}
+
+#ScatterPlot h2 {
+    margin: 0; /* Remove default margin */
+    margin-bottom: 20px;
+    color: #3E5D81;
+}
+
+#ScatterPlot svg * {
+    filter: none; /* Reset filter for children */
+    color: #3E5D81;
+}
+
+/* tooltip */
+.tooltip {
+    box-sizing: border-box;
+    background: #9CFC97;
+    border: 1px solid #F8F9FA;
+    border-radius: 20px;
+    display: flex; /* Add Flexbox display */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center;
+    font-weight: 600;
+    fill: #3E5D81;
+}
+
+/* Legend */
+
+#ScatterPlot .legend text {
+    fill: #3E5D81;
+    font-size: normal;
+}
+
+#ScatterPlot .legend-item {
+    margin: auto;
+}

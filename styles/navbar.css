@@ -1,0 +1,107 @@
+* {
+  font-family: sans-serif;
+}
+
+#navbarContent {
+  float: left;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: white;
+  width: 2012px;
+}
+
+.pushable {
+  background: #3E5D81;
+  border: none;
+  border-radius: 12px;
+  padding-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.pushable img{
+  float: left;
+}
+
+.pushable span{
+  float: right;
+}
+
+.front {
+  display: flex;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  color: white;
+  transform: translateY(-4px);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* Search bar styling */
+.dropdown {
+  float: right;
+  padding-left: 600px;
+}
+
+/* Dropdown button */
+.dropbtn {
+  background-color: rgba(238, 238, 238, 0.501967);
+  color: #333;
+  font-size: 18px; /* Adjust the font size as needed */
+  border: none;
+  cursor: pointer;
+  width: 700px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.dropbtn span {
+  color: #3E5D81;
+  margin-left: 10px;
+}
+
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  background-color: #f9f9f9;
+  width: 500px; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  width: 100%; /* Make the dropdown items full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}

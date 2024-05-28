@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F20DV MY-G2 Dashboard</title>
+
+    <script src="lib/d3/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="navbar">
+        <div id="navbarContent">
+            <button class="pushable" id="dataScienceButton">
+                <img src="DataScienceIcon.png" width="50" height="50"></img>
+                <span class="front">Jobs and Salaries <br> In Data Science</span>
+            </button>
+
+            <button class="pushable" id="indiaButton">
+                <img src="IndiaIcon.png" width="50" height="50"></img>
+                <span class="front">Guide to India's <br> Must See Places</span>
+            </button>
+
+            <script>
+                document.getElementById("dataScienceButton").addEventListener("click", function () {
+                    window.location.href = "./index.html"; // Navigate to Jobs and Salaries in Data Science page
+                });
+
+                document.getElementById("indiaButton").addEventListener("click", function () {
+                    window.location.href = "./india.html"; // Navigate to Guide to India Must See Places page
+                });
+            </script>
+        </div>
+    </div>
+
+    <div id="alertBox" class="alert-box"></div>
+    <div class="grid">
+        <div id="mapCard" class="card">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <h2>Distribution of Top Attractions by User Preference</h2>
+            </div>
+            <div id="map"></div>
+            <button id="btn" class="btn" style="position: absolute; top: 0; right: 0;"><i class="fa fa-filter"
+                    style="color: aliceblue;"></i></button>
+    
+            <div id="inner-card" class="inner-card">
+                Entrance Fee <i class="fa fa-question-circle" id="entrance-fee-info"></i>
+                <div id="slider-entrance-fee-container"></div>
+    
+                Rating <i class="fa fa-question-circle" id="rating-info"></i>
+                <div id="slider-rating-container"></div>
+                <div id="checkbox-airport-container"></div> <i class="fa fa-question-circle" id="airport-info"></i>
+                <div id="checkbox-camera-container"></div> <i class="fa fa-question-circle" id="camera-info"></i>
+                Type <i class="fa fa-question-circle" id="type-info"></i>
+                <div id="dropdown-type-container"></div>
+            </div>  
+        </div>  
+    </div>
+
+    <script type="module" src="scripts/main.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let innerCard = document.querySelector('#inner-card');
+            let btn = document.querySelector('#btn');
+
+            // Hide inner card when mouse leaves
+            innerCard.addEventListener('mouseleave', () => {
+                innerCard.style.display = 'none';
+            });
+
+            // Show inner card when button is clicked
+            btn.addEventListener('click', () => {
+                innerCard.style.display = 'block';
+            });
+            let infoIcons = document.querySelectorAll('.fa-question-circle');
+            // Add click event listener to each info icon
+            infoIcons.forEach(icon => {
+                icon.style.color = "#b4cdd6";
+                // icon.style.backgroundColor="black";
+
+                icon.addEventListener('click', () => {
+                    // Get the ID of the clicked icon
+                    let id = icon.getAttribute('id');
+
+                    // Show the purpose based on the ID
+                    let purposeText;
+                    switch (id) {
+                        case 'entrance-fee-info':
+                            purposeText = 'Slide to alter the maximum value of entrance fee acceptable.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'rating-info':
+                            purposeText = 'Slide to alter the minimum Google average rating acceptable.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'airport-info':
+                            purposeText = 'Tick if you want the destination to have an airport within 50km.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'camera-info':
+                            purposeText = 'Tick if you want to take photography in the attraction.';
+                            showAlert(purposeText, id);
+                            break;
+                        case 'type-info':
+                            purposeText = 'Select type(s) of destination in the dropdown.';
+                            showAlert(purposeText, id);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            });
+
+
+        });
+        // Function to display alert box
+        function showAlert(message, id) {
+            let alertBox = document.getElementById('alertBox');
+            alertBox.textContent = message;
+            alertBox.style.display = 'block';
+
+            let iconRect = document.getElementById(id).getBoundingClientRect();
+            console.log(iconRect);
+            alertBox.style.top = iconRect.top + 'px';
+            alertBox.style.left = (iconRect.right + 50) + 'px'; // Adjust as needed
+
+            // Add click event listener to document to hide the alert box when clicked outside
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 8000);
+        }
+    </script>
+</body>
+</html>
